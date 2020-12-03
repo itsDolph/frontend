@@ -1,32 +1,23 @@
-# Prerequisites
-*.d
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
-# Compiled Object files
-*.slo
-*.lo
-*.o
-*.obj
+# testing
+/coverage
 
-# Precompiled Headers
-*.gch
-*.pch
+# next.js
+/.next/
+/out/
 
-# Compiled Dynamic libraries
-*.so
-*.dylib
-*.dll
+# production
+/build
 
-# Fortran module files
-*.mod
-*.smod
+# misc
+.DS_Store
+.env*
 
-# Compiled Static libraries
-*.lai
-*.la
-*.a
-*.lib
-
-# Executables
-*.exe
-*.out
-*.app
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
