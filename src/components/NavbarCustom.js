@@ -33,9 +33,9 @@ function NavbarCustom(props) {
                   <NavDropdown.Item active={false}>Dashboard</NavDropdown.Item>
                 </Link>
 
-                <Link href="/settings/general" passHref={true}>
+                {/* <Link href="/settings/general" passHref={true}>
                   <NavDropdown.Item active={false}>Settings</NavDropdown.Item>
-                </Link>
+                </Link> */}
 
                 <Dropdown.Divider />
 

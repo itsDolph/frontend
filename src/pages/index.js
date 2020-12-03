@@ -32,11 +32,11 @@ function IndexPage(props) {
       size="md"
       bgImage=""
       bgImageOpacity={1}
-      title="Your landing page title here"
-      subtitle="This landing page is perfect for showing off your awesome product and driving people to sign up for a paid plan."
+      title="Your favorite videos, stashed away."
+      subtitle="The world's easiest turnkey media server. Just enter your favorite links and enjoy."
       buttonText={accountExists ? "Dashboard" : "Get Started"}
       buttonColor="primary"
-      image="https://uploads.divjoy.com/undraw-japan_ubgk.svg"
+      image="/undraw_video_files_fu10.svg"
       buttonOnClick={() => {
         // Navigate to signup page
         if (accountExists) {

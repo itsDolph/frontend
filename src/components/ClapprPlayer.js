@@ -34,9 +34,10 @@ export const ClapprPlayer = (props) => {
     var playerElement = document.getElementById("player");
 
     const thumbs = video.previews.sort().map((preview, i) => {
-      return {time: ((i+1) * 20), url:"http://127.0.0.1:5000" + preview }
+      return {time: ((i+1) * 20), url:"http://localhost:5000" + preview }
     });
 
+    console.log(video.thumbnail)
 
     let player = null;
     player = new Clappr.Player({
@@ -44,8 +45,9 @@ export const ClapprPlayer = (props) => {
       plugins: {
         core: [ClapprThumbnailsPlugin]
       },
+      poster:"http://localhost:5000" + video.thumbnail,
       baseUrl: "http://localhost:3000/",
-      source: "http://127.0.0.1:5000" + video.filename,
+      source: "http://localhost:5000" + video.filename,
       autoPlay: false,
       // width: "500px",
       // height: "300px",
