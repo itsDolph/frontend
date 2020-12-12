@@ -1,7 +1,8 @@
 // import fakeAuth from "fake-auth";
 
 export function apiRequest(path, method = "GET", data) {
-  return fetch(`http://localhost:5000${path}`, {
+  print(self.location.hostname)
+  return fetch(`http://${self.location.hostname}:5000${path}`, {
     method: method,
     headers: {
       "Content-Type": "application/json",
