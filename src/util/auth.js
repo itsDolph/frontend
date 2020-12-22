@@ -130,6 +130,8 @@ function useProvideAuth() {
       const currentUser = getCookie(COOKIE_KEY);
       if (currentUser) {
         setUser(currentUser);
+      } else {
+        setUser(false);
       }
     }
 

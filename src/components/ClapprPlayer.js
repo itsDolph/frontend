@@ -1,6 +1,4 @@
 import React, { useEffect } from "react";
-// import Clappr from "clappr";
-import ClapprThumbnailsPlugin from 'clappr-thumbnails-plugin'
 
 export const ClapprPlayer = (props) => {
 
@@ -11,9 +9,8 @@ export const ClapprPlayer = (props) => {
   let dynamicallyImportPackage = async () => {
     const metadata = await fetch(`http://${self.location.hostname}:5000`  + props.metadata);
     const video = await metadata.json();
-    const Clappr = await import('clappr');
-    // const ClapprThumbnailsPlugin = await import('clappr-thumbnails-plugin');
-    // you can now use the package in here
+    const ClapprThumbnailsPlugin = (await import('clappr-thumbnails-plugin')).default;
+    const Clappr = (await import('clappr')).default;    
 
     document.title = video.title;
     var playerElement = document.getElementById("player");
@@ -24,9 +21,8 @@ export const ClapprPlayer = (props) => {
 
     let player = null;
     player = new Clappr.Player({
-    //   parentId: `${id}`,
       plugins: {
-        core: [ClapprThumbnailsPlugin]
+        core: [ClapprThumbnailsPlugin],
       },
       poster:`http://${self.location.hostname}:5000` + video.thumbnail,
       baseUrl: `http://${self.location.hostname}:3000`,
@@ -45,7 +41,6 @@ export const ClapprPlayer = (props) => {
         }
       }
     });
-
     player.attachTo(playerElement);
   }
 
