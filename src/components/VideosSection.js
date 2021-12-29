@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import PageLoader from "components/PageLoader";
 import Container from "react-bootstrap/Container";
 import SectionHeader from "components/SectionHeader";
-import CardDeck from "react-bootstrap/CardDeck";
-import VideoCard from "components/VideoCard";
+import ListGroup from "react-bootstrap/ListGroup";
 import { useAuth } from "util/auth.js";
 import { useRouter } from "next/router";
 import Link from "next/link";
@@ -19,9 +18,15 @@ function VideosSection(props) {
       setLoading(false);
       const newVideos = response.videos.map((video) => {
         const metadata = video.filename.substr(0, video.filename.lastIndexOf("/") + 1) + "metadata.txt";
-        const thumbnail = `http://${self.location.hostname}:5000` + video.thumbnail;
         return (
-          <VideoCard video={video} key={video.filename}/>
+          <ListGroup.Item key={video.filename}>
+            <Link
+              href={{
+                pathname: "/player",
+                query: { metadata: metadata },
+              }}
+            ><a>{video.title}</a></Link>
+          </ListGroup.Item>
         );
       });
       setVideos(newVideos);
@@ -46,9 +51,9 @@ function VideosSection(props) {
             spaced={true}
             className="text-center"
           />
-          <CardDeck>
+          <ListGroup className="mt-2">
             {videos}
-          </CardDeck>
+          </ListGroup>
         </Container>)}
     </>
   );
