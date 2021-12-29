@@ -10,7 +10,8 @@ function VideoCard(props) {
     const previews = video.previews.sort().map((preview) => {
         return `http://${self.location.hostname}:5000` + preview;
     });
-    const imageStyle = { minWidth: '18rem', maxWidth: '18rem', minHeight: '15rem', maxHeight: '15rem' }
+
+    const [previewImage, setPreviewImage] = useState(thumbnail);
     const [isHovering, setIsHovering] = useState(false);
     const [interval, setInterval] = useState(500);
 
@@ -18,7 +19,7 @@ function VideoCard(props) {
         return (<Carousel.Item key={preview}>
             <img
                 className="d-block w-100"
-                style={imageStyle}
+                style={{ minHeight: '15rem' }}
                 src={preview}
                 interval={interval} 
             />
@@ -32,12 +33,11 @@ function VideoCard(props) {
 
     const handleMouseOver = () => {
         setIsHovering(true)
-        setInterval(500);
         // console.log("handleMouseOver");
     };
     const handleMouseOut = () => {
         setIsHovering(false);
-        setInterval(null);
+        setPreviewImage(thumbnail);
         // console.log("handleMouseOut");
     };
 
@@ -59,10 +59,10 @@ function VideoCard(props) {
 
 
     return (
-        <Card style={{ minWidth: '18rem', maxWidth: '18rem', minHeight: '18rem', maxHeight: '18rem' }} className="mb-2">
+        <Card style={{ maxWidth: '18rem' }} className="mb-2">
             {/* {isHovering && ( */}
             <Carousel 
-                                style={{...imageStyle, ...{opacity: isHovering ? '100' : '0'}}} 
+                                style={{ maxHeight: '15rem', opacity: isHovering ? '100' : '0'}} 
                                 controls={false} 
                                 interval={interval} 
                                 slide={false} 
@@ -72,7 +72,7 @@ function VideoCard(props) {
                             </Carousel>
                             {/* )} */}
             {/* {!isHovering && ( */}
-            <Card.Img variant="top" src={thumbnail} ref={ref} style={{...imageStyle, ...{ position: 'absolute', opacity: !isHovering ? '100' : '0' }}} />
+            <Card.Img variant="top" src={previewImage} ref={ref} style={{ position: 'absolute', height: '15rem', opacity: !isHovering ? '100' : '0' }} />
              {/* )} */}
             <Card.Body>
                 <Link
